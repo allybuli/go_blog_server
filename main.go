@@ -14,6 +14,8 @@ func main() {
 	global.Redis = initialize.ConnectRedis()
 	global.Es = initialize.ConnectEs()
 
+	defer global.Redis.Close()
+
 	initialize.InitCron()
 
 	core.RunServer()
