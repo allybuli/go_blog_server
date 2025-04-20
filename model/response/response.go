@@ -1,9 +1,8 @@
 package response
 
 import (
-	"net/http"
-
 	"github.com/gin-gonic/gin"
+	"net/http"
 )
 
 type Response struct {
@@ -51,4 +50,16 @@ func FailWithMessage(message string, c *gin.Context) {
 
 func FailWithDetailed(data interface{}, message string, c *gin.Context) {
 	Result(ERROR, data, message, c)
+}
+
+func NoAuth(message string, c *gin.Context) {
+	Result(ERROR, gin.H{"reload": true}, message, c)
+}
+
+func Forbidden(message string, c *gin.Context) {
+	c.JSON(http.StatusForbidden, Response{
+		Code: ERROR,
+		Data: nil,
+		Msg:  message,
+	})
 }
