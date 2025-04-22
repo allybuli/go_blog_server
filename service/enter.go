@@ -1,8 +1,9 @@
 package service
 
 type ServiceGroup struct {
-	BaseService
 	EsService
+	BaseService
+	JwtService
 }
 
 var ServiceGroupApp = new(ServiceGroup)
