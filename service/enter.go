@@ -4,7 +4,8 @@ type ServiceGroup struct {
 	EsService
 	BaseService
 	JwtService
-    GaodeService
+	GaodeService
+	UserService
 }
 
 var ServiceGroupApp = new(ServiceGroup)
