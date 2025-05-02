@@ -67,6 +67,8 @@ func (userApi *UserApi) Login(c *gin.Context) {
 	switch c.Query("flag") {
 	case "email":
 		userApi.EmailLogin(c)
+	case "qq":
+		userApi.QQLogin(c)
 	default:
 		userApi.EmailLogin(c)
 	}
@@ -96,6 +98,34 @@ func (userApi *UserApi) EmailLogin(c *gin.Context) {
 		return
 	}
 	response.FailWithMessage("Incorrect verification code", c)
+}
+
+// QQLogin QQ登录
+func (userApi *UserApi) QQLogin(c *gin.Context) {
+	code := c.Query("code")
+	if code == "" {
+		response.FailWithMessage("Code is required", c)
+		return
+	}
+
+	// 获取访问令牌
+	accessTokenResponse, err := qqService.GetAccessTokenByCode(code)
+	if err != nil || accessTokenResponse.Openid == "" {
+		global.Log.Error("Invalid code", zap.Error(err))
+		response.FailWithMessage("Invalid code", c)
+		return
+	}
+
+	// 根据访问令牌进行QQ登录
+	user, err := userService.QQLogin(accessTokenResponse)
+	if err != nil {
+		global.Log.Error("Failed to login:", zap.Error(err))
+		response.FailWithMessage("Failed to login", c)
+		return
+	}
+
+	// 登录成功后生成 token
+	userApi.TokenNext(c, user)
 }
 
 func (userApi *UserApi) TokenNext(c *gin.Context, user database.User) {
@@ -191,4 +221,223 @@ func (userApi *UserApi) TokenNext(c *gin.Context, user database.User) {
 			AccessTokenExpiresAt: accessClaims.ExpiresAt.Unix() * 1000,
 		}, "Successful login", c)
 	}
+}
+
+// ForgotPassword 找回密码
+func (userApi *UserApi) ForgotPassword(c *gin.Context) {
+	var req request.ForgotPassword
+	err := c.ShouldBindJSON(&req)
+	if err != nil {
+		response.FailWithMessage(err.Error(), c)
+		return
+	}
+
+	session := sessions.Default(c)
+
+	// 两次邮箱一致性判断
+	savedEmail := session.Get("email")
+	if savedEmail == nil || savedEmail.(string) != req.Email {
+		response.FailWithMessage("This email doesn't match the email to be verified", c)
+		return
+	}
+
+	// 获取会话中存储的邮箱验证码
+	savedCode := session.Get("verification_code")
+	if savedCode == nil || savedCode.(string) != req.VerificationCode {
+		response.FailWithMessage("Invalid verification code", c)
+		return
+	}
+
+	// 判断邮箱验证码是否过期
+	savedTime := session.Get("expire_time")
+	if savedTime.(int64) < time.Now().Unix() {
+		response.FailWithMessage("The verification code has expired, please resend it", c)
+		return
+	}
+
+	err = userService.ForgotPassword(req)
+	if err != nil {
+		global.Log.Error("Failed to retrieve the password:", zap.Error(err))
+		response.FailWithMessage("Failed to retrieve the password", c)
+		return
+	}
+	response.OkWithMessage("Successfully retrieved", c)
+}
+
+// UserCard 获取用户卡片信息
+func (userApi *UserApi) UserCard(c *gin.Context) {
+	var req request.UserCard
+	err := c.ShouldBindQuery(&req)
+	if err != nil {
+		response.FailWithMessage(err.Error(), c)
+		return
+	}
+	userCard, err := userService.UserCard(req)
+	if err != nil {
+		global.Log.Error("Failed to get card:", zap.Error(err))
+		response.FailWithMessage("Failed to get card", c)
+		return
+	}
+	response.OkWithData(userCard, c)
+}
+
+// Logout 登出
+func (userApi *UserApi) Logout(c *gin.Context) {
+	userService.Logout(c)
+	response.OkWithMessage("Successful logout", c)
+}
+
+// UserResetPassword 修改密码
+func (userApi *UserApi) UserResetPassword(c *gin.Context) {
+	var req request.UserResetPassword
+	err := c.ShouldBindJSON(&req)
+	if err != nil {
+		response.FailWithMessage(err.Error(), c)
+		return
+	}
+	req.UserID = utils.GetUserID(c)
+	err = userService.UserResetPassword(req)
+	if err != nil {
+		global.Log.Error("Failed to modify:", zap.Error(err))
+		response.FailWithMessage("Failed to modify, orginal password does not match the current account", c)
+		return
+	}
+	response.OkWithMessage("Successfully changed password, please log in again", c)
+	userService.Logout(c)
+}
+
+// UserInfo 获取个人信息
+func (userApi *UserApi) UserInfo(c *gin.Context) {
+	userID := utils.GetUserID(c)
+	user, err := userService.UserInfo(userID)
+	if err != nil {
+		global.Log.Error("Failed to get user information:", zap.Error(err))
+		response.FailWithMessage("Failed to get user information", c)
+		return
+	}
+	response.OkWithData(user, c)
+}
+
+// UserChangeInfo 修改个人信息
+func (userApi *UserApi) UserChangeInfo(c *gin.Context) {
+	var req request.UserChangeInfo
+	err := c.ShouldBindJSON(&req)
+	if err != nil {
+		response.FailWithMessage(err.Error(), c)
+		return
+	}
+	req.UserID = utils.GetUserID(c)
+	err = userService.UserChangeInfo(req)
+	if err != nil {
+		global.Log.Error("Failed to change user information:", zap.Error(err))
+		response.FailWithMessage("Failed to change user information", c)
+		return
+	}
+	response.OkWithMessage("Successfully changed user information", c)
+}
+
+// UserWeather 获取天气
+func (userApi *UserApi) UserWeather(c *gin.Context) {
+	ip := c.ClientIP()
+	weather, err := userService.UserWeather(ip)
+	if err != nil {
+		global.Log.Error("Failed to get user weather", zap.Error(err))
+		response.FailWithMessage("Failed to get user weather", c)
+		return
+	}
+	response.OkWithData(weather, c)
+}
+
+// UserChart 获取用户图表数据，登录和注册人数
+func (userApi *UserApi) UserChart(c *gin.Context) {
+	var req request.UserChart
+	err := c.ShouldBindQuery(&req)
+	if err != nil {
+		response.FailWithMessage(err.Error(), c)
+		return
+	}
+
+	data, err := userService.UserChart(req)
+	if err != nil {
+		global.Log.Error("Failed to get user chart:", zap.Error(err))
+		response.FailWithMessage("Failed to user chart", c)
+		return
+	}
+	response.OkWithData(data, c)
+}
+
+// UserList 获取用户列表
+func (userApi *UserApi) UserList(c *gin.Context) {
+	var pageInfo request.UserList
+	err := c.ShouldBindQuery(&pageInfo)
+	if err != nil {
+		response.FailWithMessage(err.Error(), c)
+		return
+	}
+
+	list, total, err := userService.UserList(pageInfo)
+	if err != nil {
+		global.Log.Error("Failed to get user list:", zap.Error(err))
+		response.FailWithMessage("Failed to get user list", c)
+		return
+	}
+	response.OkWithData(response.PageResult{
+		List:  list,
+		Total: total,
+	}, c)
+}
+
+// UserFreeze 冻结用户
+func (userApi *UserApi) UserFreeze(c *gin.Context) {
+	var req request.UserOperation
+	err := c.ShouldBindJSON(&req)
+	if err != nil {
+		response.FailWithMessage(err.Error(), c)
+		return
+	}
+	err = userService.UserFreeze(req)
+	if err != nil {
+		global.Log.Error("Failed to freeze user:", zap.Error(err))
+		response.FailWithMessage("Failed to freeze user", c)
+		return
+	}
+	response.OkWithMessage("Successfully freeze user", c)
+}
+
+// UserUnfreeze 解冻用户
+func (userApi *UserApi) UserUnfreeze(c *gin.Context) {
+	var req request.UserOperation
+	err := c.ShouldBindJSON(&req)
+	if err != nil {
+		response.FailWithMessage(err.Error(), c)
+		return
+	}
+	err = userService.UserUnfreeze(req)
+	if err != nil {
+		global.Log.Error("Failed to unfreeze user:", zap.Error(err))
+		response.FailWithMessage("Failed to unfreeze user", c)
+		return
+	}
+	response.OkWithMessage("Successfully unfreeze user", c)
+}
+
+// UserLoginList 获取登录日志列表
+func (userApi *UserApi) UserLoginList(c *gin.Context) {
+	var pageInfo request.UserLoginList
+	err := c.ShouldBindQuery(&pageInfo)
+	if err != nil {
+		response.FailWithMessage(err.Error(), c)
+		return
+	}
+
+	list, total, err := userService.UserLoginList(pageInfo)
+	if err != nil {
+		global.Log.Error("Failed to get user login list:", zap.Error(err))
+		response.FailWithMessage("Failed to get user login list", c)
+		return
+	}
+	response.OkWithData(response.PageResult{
+		List:  list,
+		Total: total,
+	}, c)
 }
