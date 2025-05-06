@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "4119ec4e-a173-41e2-9db9-d06f65a99fa9",
+		"_postman_id": "9cf7036b-c596-4c1f-a704-5ca49d97bf8e",
 		"name": "go_blog",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "29975670"
@@ -452,6 +452,439 @@
 							"query": [
 								{
 									"key": "uuid",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "page_size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "image",
+			"item": [
+				{
+					"name": "upload",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{go_blog_url}}/api/image/upload",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"image",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ids\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{go_blog_url}}/api/image/delete",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"image",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{go_blog_url}}/api/image/list?page=1&page_size=10",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"image",
+								"list"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "category",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "storage",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "page_size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "article",
+			"item": [
+				{
+					"name": ":id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{go_blog_url}}/api/article/:id",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"article",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{go_blog_url}}/api/article/search?query&category&tag&sort&order=desc&page=1&page_size=10",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"article",
+								"search"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": null
+								},
+								{
+									"key": "category",
+									"value": null
+								},
+								{
+									"key": "tag",
+									"value": null
+								},
+								{
+									"key": "sort",
+									"value": null
+								},
+								{
+									"key": "order",
+									"value": "desc"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "page_size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{go_blog_url}}/api/article/category",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"article",
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "tags",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{go_blog_url}}/api/article/tags",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"article",
+								"tags"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "like",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"article_id\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{go_blog_url}}/api/article/like",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"article",
+								"like"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "isLike",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{go_blog_url}}/api/article/isLike?article_id",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"article",
+								"isLike"
+							],
+							"query": [
+								{
+									"key": "article_id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "likesList",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{go_blog_url}}/api/article/likesList?page=1&page_size=10",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"article",
+								"likesList"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "page_size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cover\": \"\",\r\n    \"title\": \"\",\r\n    \"category\": \"\",\r\n    \"tags\": [],\r\n    \"abstract\": \"\",\r\n    \"content\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{go_blog_url}}/api/article/create",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"article",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ids\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{go_blog_url}}/api/article/delete",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"article",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"\",\r\n    \"cover\": \"\",\r\n    \"title\": \"\",\r\n    \"category\": \"\",\r\n    \"tags\": [],\r\n    \"abstract\": \"\",\r\n    \"content\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{go_blog_url}}/api/article/update",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"article",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{go_blog_url}}/api/article/list?page=1&page_size=10",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"article",
+								"list"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "category",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "abstract",
 									"value": null,
 									"disabled": true
 								},
