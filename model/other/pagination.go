@@ -1,9 +1,10 @@
 package other
 
 import (
+	"server/model/request"
+
 	"github.com/elastic/go-elasticsearch/v8/typedapi/core/search"
 	"gorm.io/gorm"
-	"server/model/request"
 )
 
 type MySQLOption struct {
