@@ -902,6 +902,174 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "comment",
+			"item": [
+				{
+					"name": ":article_id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{go_blog_url}}/api/comment/:article_id",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"comment",
+								":article_id"
+							],
+							"variable": [
+								{
+									"key": "article_id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "new",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{go_blog_url}}/api/comment/new",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"comment",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"article_id\": \"\",\r\n    \"pid\": null,\r\n    \"content\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{go_blog_url}}/api/comment/create",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"comment",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ids\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{go_blog_url}}/api/comment/delete",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"comment",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{go_blog_url}}/api/comment/info",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"comment",
+								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{go_blog_url}}/api/comment/list?page=1&page_size=10",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"comment",
+								"list"
+							],
+							"query": [
+								{
+									"key": "article_id",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "user_uuid",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "content",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "page_size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
