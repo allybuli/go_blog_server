@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "9cf7036b-c596-4c1f-a704-5ca49d97bf8e",
+		"_postman_id": "b5181278-c1e6-4d71-85a2-eff3f573c083",
 		"name": "go_blog",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "29975670"
@@ -1054,6 +1054,300 @@
 								{
 									"key": "content",
 									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "page_size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "advertisement",
+			"item": [
+				{
+					"name": "info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{go_blog_url}}/api/advertisement/info",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"advertisement",
+								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ad_image\": \"\",\r\n    \"link\": \"\",\r\n    \"title\": \"\",\r\n    \"content\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{go_blog_url}}/api/advertisement/create",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"advertisement",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ids\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{go_blog_url}}/api/advertisement/delete",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"advertisement",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 0,\r\n    \"link\": \"\",\r\n    \"title\": \"\",\r\n    \"content\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{go_blog_url}}/api/advertisement/update",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"advertisement",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{go_blog_url}}/api/advertisement/list?page=1&page_size=10",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"advertisement",
+								"list"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "content",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "page_size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "friend_link",
+			"item": [
+				{
+					"name": "info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{go_blog_url}}/api/friendLink/info",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"friendLink",
+								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"logo\": \"\",\r\n    \"link\": \"\",\r\n    \"name\": \"\",\r\n    \"description\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{go_blog_url}}/api/friendLink/create",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"friendLink",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ids\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{go_blog_url}}/api/friendLink/delete",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"friendLink",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 0,\r\n    \"link\": \"\",\r\n    \"name\": \"\",\r\n    \"description\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{go_blog_url}}/api/friendLink/update",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"friendLink",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{go_blog_url}}/api/friendLink/list?page=1&page_size=10",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"friendLink",
+								"list"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "description",
+									"value": "",
 									"disabled": true
 								},
 								{
