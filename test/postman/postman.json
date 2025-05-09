@@ -1520,6 +1520,262 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "website",
+			"item": [
+				{
+					"name": "logo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{go_blog_url}}/api/website/logo",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"website",
+								"logo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "title",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{go_blog_url}}/api/website/title",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"website",
+								"title"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{go_blog_url}}/api/website/info",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"website",
+								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "carousel",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{go_blog_url}}/api/website/carousel",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"website",
+								"carousel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "news",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{go_blog_url}}/api/website/news?source=baidu",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"website",
+								"news"
+							],
+							"query": [
+								{
+									"key": "source",
+									"value": "baidu"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "calendar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{go_blog_url}}/api/website/calendar",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"website",
+								"calendar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "footerLink",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{go_blog_url}}/api/website/footerLink",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"website",
+								"footerLink"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addCarousel",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"url\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{go_blog_url}}/api/website/addCarousel",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"website",
+								"addCarousel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cancelCarousel",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"url\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{go_blog_url}}/api/website/cancelCarousel",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"website",
+								"cancelCarousel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createFooterLink",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"\",\r\n    \"link\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{go_blog_url}}/api/website/createFooterLink",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"website",
+								"createFooterLink"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteFooterLink",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"\",\r\n    \"link\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{go_blog_url}}/api/website/deleteFooterLink",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"website",
+								"deleteFooterLink"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
