@@ -1776,6 +1776,340 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "config",
+			"item": [
+				{
+					"name": "website",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{go_blog_url}}/api/config/website",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"config",
+								"website"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "website",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"logo\": \"\",\r\n    \"full_logo\": \"\",\r\n    \"title\": \"\",\r\n    \"slogan\": \"\",\r\n    \"slogan_en\": \"\",\r\n    \"description\": \"\",\r\n    \"version\": \"\",\r\n    \"created_at\": \"\",\r\n    \"icp_filing\": \"\",\r\n    \"public_security_filing\": \"\",\r\n    \"bilibili_url\": \"\",\r\n    \"gitee_url\": \"\",\r\n    \"github_url\": \"\",\r\n    \"name\": \"\",\r\n    \"job\": \"\",\r\n    \"address\": \"\",\r\n    \"email\": \"\",\r\n    \"qq_image\": \"\",\r\n    \"wechat_image\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{go_blog_url}}/api/config/website",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"config",
+								"website"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "system",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{go_blog_url}}/api/config/system",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"config",
+								"system"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "system",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"use_multipoint\": true,\r\n    \"sessions_secret\": \"\",\r\n    \"oss_type\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{go_blog_url}}/api/config/system",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"config",
+								"system"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "email",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{go_blog_url}}/api/config/email",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"config",
+								"email"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "email",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"host\": \"\",\r\n    \"port\": 465,\r\n    \"from\": \"\",\r\n    \"nickname\": \"\",\r\n    \"secret\": \"\",\r\n    \"is_ssl\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{go_blog_url}}/api/config/email",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"config",
+								"email"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "qq",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{go_blog_url}}/api/config/qq",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"config",
+								"qq"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "qq",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"enable\": false,\r\n    \"app_id\": \"\",\r\n    \"app_key\": \"\",\r\n    \"redirect_uri\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{go_blog_url}}/api/config/qq",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"config",
+								"qq"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "qiniu",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{go_blog_url}}/api/config/qiniu",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"config",
+								"qiniu"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "qiniu",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"zone\": \"\",\r\n    \"bucket\": \"\",\r\n    \"img_path\": \"\",\r\n    \"access_key\": \"\",\r\n    \"secret_key\": \"\",\r\n    \"use_https\": true,\r\n    \"use_cdn_domains\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{go_blog_url}}/api/config/qiniu",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"config",
+								"qiniu"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "jwt",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{go_blog_url}}/api/config/jwt",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"config",
+								"jwt"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "jwt",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"access_token_secret\": \"\",\r\n    \"refresh_token_secret\": \"\",\r\n    \"access_token_expiry_time\": \"\",\r\n    \"refresh_token_expiry_time\": \"\",\r\n    \"issuer\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{go_blog_url}}/api/config/jwt",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"config",
+								"jwt"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "gaode",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{go_blog_url}}/api/config/gaode",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"config",
+								"gaode"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "gaode",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"enable\": true,\r\n    \"key\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{go_blog_url}}/api/config/gaode",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"config",
+								"gaode"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
