@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b5181278-c1e6-4d71-85a2-eff3f573c083",
+		"_postman_id": "6f732db8-f702-4156-8616-bfea55113e14",
 		"name": "go_blog",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "29975670"
@@ -1350,6 +1350,162 @@
 									"value": "",
 									"disabled": true
 								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "page_size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "feedback",
+			"item": [
+				{
+					"name": "new",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{go_blog_url}}/api/feedback/new",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"feedback",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{go_blog_url}}/api/feedback/create",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"feedback",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{go_blog_url}}/api/feedback/info",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"feedback",
+								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ids\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{go_blog_url}}/api/feedback/delete",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"feedback",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reply",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 0,\r\n    \"reply\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{go_blog_url}}/api/feedback/reply",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"feedback",
+								"reply"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{go_blog_url}}/api/feedback/list?page=1&page_size=10",
+							"host": [
+								"{{go_blog_url}}"
+							],
+							"path": [
+								"api",
+								"feedback",
+								"list"
+							],
+							"query": [
 								{
 									"key": "page",
 									"value": "1"
